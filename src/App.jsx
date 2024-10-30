@@ -1,14 +1,16 @@
 import {QueryClient, QueryClientProvider} from "react-query";
-import BookStoreQueryClient from "./BookStoreQueryClient.tsx";
+
+import BookQueryClient from "./BookQueryClient.tsx";
 import BorrowerQueryClient from "./BorrowerQueryClient.tsx";
+import BookStoreQueryClient from "./BookStoreQueryClient.tsx";
 
 const queryClient = new QueryClient();
 function App() {
     return (
         <QueryClientProvider client={queryClient}>
-            <BookStoreQueryClient></BookStoreQueryClient>
-            <BorrowerQueryClient></BorrowerQueryClient>
+            <BookQueryClient></BookQueryClient>
         </QueryClientProvider>
+
     );
 }
 
