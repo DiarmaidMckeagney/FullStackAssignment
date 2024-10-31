@@ -9,6 +9,8 @@ function App() {
     return (
         <QueryClientProvider client={queryClient}>
             <BookQueryClient></BookQueryClient>
+            <BorrowerQueryClient></BorrowerQueryClient>
+            <BookStoreQueryClient></BookStoreQueryClient>
         </QueryClientProvider>
 
     );

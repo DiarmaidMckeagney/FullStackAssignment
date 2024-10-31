@@ -6,7 +6,7 @@ import {v4 as uuidv4} from "uuid";
 function BookQueryClient() {
     // using the useQuery hook - 'todos' is a unique key used to identify the query
     // useQuery returns an object with isLoading, error and data properties
-    const { isLoading, error, data } = useQuery("todos", fetchBooks);
+    const { isLoading, error, data } = useQuery("todos1", fetchBooks);
     const columns: GridColDef[] = [
         {field: "bookId", headerName: "book_id", width: 200},
         {field: "isbn", headerName: "isbn", width: 200},

@@ -11,7 +11,7 @@ function BookQueryClient() {
     // useQuery returns an object with isLoading, error and data properties
 
 
-    const { isLoading, error, data } = useQuery("todos", fetchBorrower);
+    const { isLoading, error, data } = useQuery("todos2", fetchBorrower);
 
     const columns: GridColDef[] = [
         {field: "borrowerId", headerName: "Card Id", width: 200},
