@@ -1,18 +1,15 @@
 import {QueryClient, QueryClientProvider} from "react-query";
+import DisplayTable from "./DisplayTable.jsx";
 
-import BookQueryClient from "./BookQueryClient.tsx";
-import BorrowerQueryClient from "./BorrowerQueryClient.tsx";
-import BookStoreQueryClient from "./BookStoreQueryClient.tsx";
-
+//create a new query client object
 const queryClient = new QueryClient();
+
 function App() {
+    //displays the DisplayTable component
     return (
         <QueryClientProvider client={queryClient}>
-            <BookQueryClient></BookQueryClient>
-            <BorrowerQueryClient></BorrowerQueryClient>
-            <BookStoreQueryClient></BookStoreQueryClient>
+           <DisplayTable></DisplayTable>
         </QueryClientProvider>
-
     );
 }
 
