@@ -15,6 +15,11 @@ export type BookJSON = {
     title: string;
 }
 
+export type BookEntry = {
+    book: BookJSON;
+    id: bigint;
+}
+
 //used to define how the Book table returns data
 export type BookStoreJSON = {
     book_store_id: bigint;
@@ -23,10 +28,20 @@ export type BookStoreJSON = {
     manager_name: string;
 }
 
+export type BookStoreEntry = {
+    bookStore: BookStoreJSON;
+    id: bigint;
+}
+
 //used to define how the Book table returns data
 export type BorrowerJSON = {
     cardid: number;
     borrower_id: bigint;
     firstname: string;
     lastname: string;
+}
+
+export type BorrowerEntry = {
+    borrower: BorrowerJSON;
+    id: bigint;
 }

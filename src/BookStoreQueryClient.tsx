@@ -1,18 +1,56 @@
-import { useQuery } from "react-query";
-import {fetchBookStore} from "./BookAPI"
-import {DataGrid, GridColDef} from "@mui/x-data-grid";
+import {useMutation, useQuery, useQueryClient} from "react-query";
+import {deleteBookStore, fetchBookStore} from "./BookAPI"
+import {DataGrid, GridCellParams, GridColDef} from "@mui/x-data-grid";
 import {v4 as uuidv4} from "uuid";
+import {useState} from "react";
 
 function BookStoreQueryClient() {
+    const [open, setOpen] = useState(false);
+
+    const queryClient = useQueryClient();
     // using the useQuery hook - 'todos3' is a unique key used to identify the query
     // useQuery returns an object with isLoading, error and data properties
     const { isLoading, error, data } = useQuery("todos3", fetchBookStore);
+
+    const { mutate } = useMutation(deleteBookStore, {
+        onSuccess: () => {
+            setOpen(true);
+            queryClient.invalidateQueries({ queryKey: ["bookStore"] });
+        },
+        onError: (err) => {
+            console.error(err);
+        },
+    });
+
     //defining all the columns of the data grid.
     const columns: GridColDef[] = [
         {field: "bookStoreId", headerName: "bookStoreId", width: 100},
         {field: "storeName", headerName: "storeName", width: 100},
         {field: "address", headerName: "address", width: 100},
         {field: "managerName", headerName: "managerName", width: 100},
+        {
+            field: "delete",
+            headerName: "",
+            width: 90,
+            sortable: false,
+            filterable: false,
+            disableColumnMenu: true,
+            renderCell: (params: GridCellParams) => (
+                <button
+                    onClick={() => {
+                        if (
+                            window.confirm(
+                                `Are you sure you want to delete ${params.row.storeName} ${params.row.address}?`
+                            )
+                        ) {
+                            mutate(params.row.bookStoreId);
+                        }
+                    }}
+                >
+                    Delete
+                </button>
+            ),
+        },
     ];
     // if isLoading is true, then data still being fetched
     if (isLoading) return <p>Loading...</p>;

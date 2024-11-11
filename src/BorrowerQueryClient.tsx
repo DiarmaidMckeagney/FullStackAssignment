@@ -1,21 +1,70 @@
-import { useQuery } from "react-query";
-import {fetchBorrower} from "./BookAPI";
+import {useMutation, useQuery, useQueryClient} from "react-query";
+import {deleteBorrower, fetchBorrower} from "./BookAPI";
 import {v4 as uuidv4} from 'uuid';
 import {
-    DataGrid,
+    DataGrid, GridCellParams,
     GridColDef
 } from "@mui/x-data-grid";
+import {useState} from "react";
+import EditBorrower from "./EditBorrower";
 
 function BookQueryClient() {
+    const [open, setOpen] = useState(false);
     // using the useQuery hook - 'todos2' is a unique key used to identify the query
     // useQuery returns an object with isLoading, error and data properties
+    const queryClient = useQueryClient();
+
+
     const { isLoading, error, data } = useQuery("todos2", fetchBorrower);
     //defining all the columns of the data grid.
+
+    const { mutate } = useMutation(deleteBorrower, {
+        onSuccess: () => {
+            setOpen(true);
+            queryClient.invalidateQueries({ queryKey: ["borrower"] });
+        },
+        onError: (err) => {
+            console.error(err);
+        },
+    });
+
     const columns: GridColDef[] = [
         {field: "borrowerId", headerName: "Card Id", width: 100},
         {field: "cardID", headerName: "Borrower Id", width: 100},
         {field: "firstname", headerName: "Firstname", width: 100},
         {field: "lastname", headerName: "Lastname.", width: 100},
+        {
+            field: "edit",
+            headerName: "",
+            width: 90,
+            sortable: false,
+            filterable: false,
+            disableColumnMenu: true,
+            renderCell: (params: GridCellParams) => <EditBorrower borrowerData={params.row} />,
+        },
+        {
+            field: "delete",
+            headerName: "",
+            width: 90,
+            sortable: false,
+            filterable: false,
+            disableColumnMenu: true,
+            renderCell: (params: GridCellParams) => (
+                <button
+                    onClick={() => {
+                        if (
+                            window.confirm(
+                                `Are you sure you want to delete ${params.row.firstname} ${params.row.lastname}?`
+                            )
+                        ) {
+                            mutate(params.row.borrowerId);
+                        }
+                    }}
+                >
+                    Delete
+                </button>
+            ),
+        },
     ];
     // if isLoading is true, then data still being fetched
     if (isLoading) return <p>Loading...</p>;
