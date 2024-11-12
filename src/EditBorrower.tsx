@@ -15,8 +15,7 @@ function EditBorrower({ borrowerData }: FormProps) {
     const queryClient = useQueryClient();
 
     const [open, setOpen] = useState(false);
-    // @ts-ignore
-    // @ts-ignore
+
     const [borrower, setBorrower] = useState<BorrowerJSON>({
         borrowerId: borrowerData.borrowerId,
         cardID: borrowerData.cardID,
@@ -70,7 +69,7 @@ function EditBorrower({ borrowerData }: FormProps) {
         <>
             <button onClick={handleClickOpen}>Edit</button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Edit car</DialogTitle>
+                <DialogTitle>Edit Borrower</DialogTitle>
                 <BorrowerDialogContent borrower={borrower} handleChange={handleChange} />
                 <DialogActions>
                     <button onClick={handleClose}>Cancel</button>

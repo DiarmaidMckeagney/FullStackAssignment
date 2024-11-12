@@ -12,7 +12,7 @@ function BorrowerDialogContent({ borrower, handleChange }: DialogFormProps) {
             <DialogContent>
                 <input
                     placeholder="Card Id"
-                    name="cardid"
+                    name="cardID"
                     value={borrower.cardID}
                     onChange={handleChange}
                 />
