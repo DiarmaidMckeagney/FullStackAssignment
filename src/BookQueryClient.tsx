@@ -4,6 +4,8 @@ import {DataGrid, GridCellParams, GridColDef} from "@mui/x-data-grid";
 import {v4 as uuidv4} from "uuid";
 import {useState} from "react";
 import AddBook from "./AddBook";
+import EditBookStore from "./EditBookStore";
+import EditBook from "./EditBook";
 
 function BookQueryClient() {
     const [open, setOpen] = useState(false);
@@ -25,17 +27,26 @@ function BookQueryClient() {
 
     //defining all the columns of the data grid.
     const columns: GridColDef[] = [
-        {field: "bookId", headerName: "book_id", width: 100},
+        {field: "bookId", headerName: "bookId", width: 100},
         {field: "isbn", headerName: "isbn", width: 100},
         {field: "price", headerName: "price", width: 100},
-        {field: "yearPublished", headerName: "year_published", width: 100},
-        {field: "bookStore", headerName: "book_store", width: 100},
-        {field: "borrowDate", headerName: "borrow_date", width: 100},
-        {field: "borrowerId", headerName: "borrower", width: 100},
-        {field: "returnDate", headerName: "return_date", width: 100},
+        {field: "yearPublished", headerName: "yearPublished", width: 100},
+        {field: "bookStore", headerName: "bookStore", width: 100},
+        {field: "borrowDate", headerName: "borrowDate", width: 100},
+        {field: "borrowerId", headerName: "borrowerId", width: 100},
+        {field: "returnDate", headerName: "returnDate", width: 100},
         {field: "author", headerName: "author", width: 100},
         {field: "genre", headerName: "genre", width: 100},
         {field: "title", headerName: "title", width: 100},
+        {
+            field: "edit",
+            headerName: "",
+            width: 90,
+            sortable: false,
+            filterable: false,
+            disableColumnMenu: true,
+            renderCell: (params: GridCellParams) => <EditBook bookData={params.row} />,
+        },
         {
             field: "delete",
             headerName: "",

@@ -4,12 +4,12 @@
 export type BookJSON = {
     isbn: number;
     price: number;
-    year_published: number;
-    book_id: number;
-    book_store: number;
-    borrow_date: Date;
-    borrower: number;
-    return_date: Date;
+    yearPublished: number;
+    bookId: number;
+    bookStore: number;
+    borrowDate: Date;
+    borrowerId: number;
+    returnDate: Date;
     author: string;
     genre: string;
     title: string;
@@ -22,10 +22,10 @@ export type BookEntry = {
 
 //used to define how the Book table returns data
 export type BookStoreJSON = {
-    book_store_id: number;
-    store_name: string;
+    bookStoreId: number;
+    storeName: string;
     address: string;
-    manager_name: string;
+    managerName: string;
 }
 
 export type BookStoreEntry = {

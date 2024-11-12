@@ -11,28 +11,29 @@ function BookStoreDialogContent({ bookStore, handleChange }: DialogFormProps) {
         <>
             <DialogContent>
                 <input
-                    placeholder="isbn"
-                    name="isbn"
-                    value={bookStore.isbn}
+                    placeholder="storeName"
+                    name="storeName"
+                    value={bookStore.storeName}
                     onChange={handleChange}
                 />
                 <br/>
                 <input
-                    placeholder="firstname"
-                    name="firstname"
-                    value={bookStore.firstname}
+                    placeholder="address"
+                    name="address"
+                    value={bookStore.address}
                     onChange={handleChange}
                 />
-                <br />
+                <br/>
                 <input
-                    placeholder="lastname"
-                    name="lastname"
-                    value={bookStore.lastname}
+                    placeholder="managerName"
+                    name="managerName"
+                    value={bookStore.managerName}
                     onChange={handleChange}
                 />
-                <br />
+                <br/>
             </DialogContent>
         </>
     );
 }
+
 export default BookStoreDialogContent;

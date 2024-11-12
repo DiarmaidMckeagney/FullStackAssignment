@@ -25,7 +25,7 @@ export const addBook = async (Book: BookJSON): Promise<BookJSON[]> => {
 
 // @ts-ignore
 export const updateBook = async (bookEntry: BookEntry): Promise<BookJSON> => {
-    const response = await axios.put("http://localhost:8080/api/books/"+bookEntry.id, bookEntry.book, {
+    const response = await axios.patch("http://localhost:8080/api/books/"+bookEntry.id, bookEntry.book, {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -56,7 +56,7 @@ export const addBookStore = async (BookStore: BookStoreJSON): Promise<BookStoreJ
 
 // @ts-ignore
 export const updateBookStore = async (bookStoreEntry: BookStoreEntry): Promise<BookStoreJSON> => {
-    const response = await axios.put("http://localhost:8080/api/bookStore/"+ bookStoreEntry.id, bookStoreEntry.bookStore, {
+    const response = await axios.patch("http://localhost:8080/api/bookStore/"+ bookStoreEntry.id, bookStoreEntry.bookStore, {
         headers: {
             'Content-Type': 'application/json'
         },

@@ -12,11 +12,17 @@ function AddBook() {
 
     const [open, setOpen] = useState(false);
     const [book, setBook] = useState<BookJSON>({
-        // @ts-ignore
-        borrower_id: 0,
-        cardid: 0,
-        firstname: "",
-        lastname: "",
+        isbn: 0,
+        price: 0,
+        yearPublished: 0,
+        bookId: 0,
+        bookStore: 0,
+        borrowDate: null,
+        borrowerId: 0,
+        returnDate: null,
+        author: "",
+        genre: "",
+        title: "",
     });
 
     const { mutate } = useMutation(addBook, {
@@ -46,12 +52,12 @@ function AddBook() {
             // @ts-ignore
             isbn: 0,
             price: 0,
-            year_published: 0,
-            book_id: 0,
-            book_store: 0,
-            borrow_date: null,
-            borrower: 0,
-            return_date: null,
+            yearPublished: 0,
+            bookId: 0,
+            bookStore: 0,
+            borrowDate: null,
+            borrowerId: 0,
+            returnDate: null,
             author: "",
             genre: "",
             title: "",
@@ -63,7 +69,7 @@ function AddBook() {
         <>
             <button onClick={handleClickOpen}>New Book</button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>New car</DialogTitle>
+                <DialogTitle>New Book</DialogTitle>
                 <BookDialogContent book={book} handleChange={handleChange} />
                 <DialogActions>
                     <button onClick={handleClose}>Cancel</button>

@@ -11,13 +11,6 @@ function BookDialogContent({ book, handleChange }: DialogFormProps) {
         <>
             <DialogContent>
                 <input
-                    placeholder="bookId"
-                    name="bookId"
-                    value={book.book_id}
-                    onChange={handleChange}
-                />
-                <br/>
-                <input
                     placeholder="isbn"
                     name="isbn"
                     value={book.isbn}
@@ -34,14 +27,14 @@ function BookDialogContent({ book, handleChange }: DialogFormProps) {
                 <input
                     placeholder="year_published"
                     name="year_published"
-                    value={book.year_published}
+                    value={book.yearPublished}
                     onChange={handleChange}
                 />
                 <br/>
                 <input
                     placeholder="book_store"
                     name="book_store"
-                    value={book.book_store}
+                    value={book.bookStore}
                     onChange={handleChange}
                 />
                 <br/>
@@ -55,7 +48,7 @@ function BookDialogContent({ book, handleChange }: DialogFormProps) {
                 <input
                     placeholder="borrower"
                     name="borrower"
-                    value={book.borrower}
+                    value={book.borrowerId}
                     onChange={handleChange}
                 />
                 <br/>

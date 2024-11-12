@@ -3,6 +3,9 @@ import {deleteBookStore, fetchBookStore} from "./BookAPI"
 import {DataGrid, GridCellParams, GridColDef} from "@mui/x-data-grid";
 import {v4 as uuidv4} from "uuid";
 import {useState} from "react";
+import AddBook from "./AddBook";
+import EditBookStore from "./EditBookStore";
+import AddBookStore from "./AddBookStore";
 
 function BookStoreQueryClient() {
     const [open, setOpen] = useState(false);
@@ -28,6 +31,15 @@ function BookStoreQueryClient() {
         {field: "storeName", headerName: "storeName", width: 100},
         {field: "address", headerName: "address", width: 100},
         {field: "managerName", headerName: "managerName", width: 100},
+        {
+            field: "edit",
+            headerName: "",
+            width: 90,
+            sortable: false,
+            filterable: false,
+            disableColumnMenu: true,
+            renderCell: (params: GridCellParams) => <EditBookStore bookStoreData={params.row} />,
+        },
         {
             field: "delete",
             headerName: "",
@@ -56,6 +68,7 @@ function BookStoreQueryClient() {
     if (isLoading) return <p>Loading...</p>;
     return (
         <>
+            <AddBookStore />
             <DataGrid
                 //dataGrid used to display the data.
                 rows={data}

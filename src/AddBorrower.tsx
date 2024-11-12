@@ -54,7 +54,7 @@ function AddBorrower() {
 
     return (
         <>
-            <button onClick={handleClickOpen}>New Car</button>
+            <button onClick={handleClickOpen}>New Borrower</button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>New Borrower</DialogTitle>
                 <BorrowerDialogContent borrower={borrower} handleChange={handleChange} />

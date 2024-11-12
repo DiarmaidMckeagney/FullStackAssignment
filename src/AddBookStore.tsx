@@ -13,15 +13,15 @@ function AddBorrower() {
     const [open, setOpen] = useState(false);
     const [bookStore, setBookStore] = useState<BookStoreJSON>({
         // @ts-ignore
-        borrower_id: 0,
-        cardid: 0,
-        firstname: "",
-        lastname: "",
+        bookStoreId: 0,
+        storeName: "",
+        address: "",
+        managerName: "",
     });
 
     const { mutate } = useMutation(addBookStore, {
         onSuccess: () => {
-            queryClient.invalidateQueries(["cars"]);
+            queryClient.invalidateQueries(["bookStore"]);
         },
         onError: (err) => {
             console.error(err);
@@ -43,20 +43,19 @@ function AddBorrower() {
     const handleSave = () => {
         mutate(bookStore);
         setBookStore({
-            // @ts-ignore
-            borrower_id: 0,
-            cardid: 0,
-            firstname: "",
-            lastname: "",
+            bookStoreId: 0,
+            storeName: "",
+            address: "",
+            managerName: ""
         });
         handleClose();
     };
 
     return (
         <>
-            <button onClick={handleClickOpen}>New Car</button>
+            <button onClick={handleClickOpen}>New BookStore</button>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>New car</DialogTitle>
+                <DialogTitle>New BookStore</DialogTitle>
                 <BookStoreDialogContent bookStore={bookStore} handleChange={handleChange} />
                 <DialogActions>
                     <button onClick={handleClose}>Cancel</button>
