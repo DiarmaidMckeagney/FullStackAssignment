@@ -1,13 +1,13 @@
 import DialogContent from "@mui/material/DialogContent";
 import { BorrowerJSON } from "./types";
 
-type DialogFormProps = {
+type DialogFormProps = {//props that are passed into the component
     borrower: BorrowerJSON;
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 function BorrowerDialogContent({ borrower, handleChange }: DialogFormProps) {
-    return (
+    return (//returns a dialog box with all fields for a borrower except the borrowerId which is auto generated and is not allowed to be changed
         <>
             <DialogContent>
                 <input

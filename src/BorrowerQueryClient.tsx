@@ -9,7 +9,7 @@ import {useState} from "react";
 import EditBorrower from "./EditBorrower";
 import AddBorrower from "./AddBorrower";
 
-function BookQueryClient() {
+function BorrowerQueryClient() {
     const [open, setOpen] = useState(false);
     // using the useQuery hook - 'todos2' is a unique key used to identify the query
     // useQuery returns an object with isLoading, error and data properties
@@ -17,8 +17,8 @@ function BookQueryClient() {
 
 
     const { isLoading, error, data } = useQuery("todos2", fetchBorrower);
-    //defining all the columns of the data grid.
 
+    //calls the deleteBorrower method
     const { mutate } = useMutation(deleteBorrower, {
         onSuccess: () => {
             setOpen(true);
@@ -28,7 +28,7 @@ function BookQueryClient() {
             console.error(err);
         },
     });
-
+    //defining all the columns of the data grid.
     const columns: GridColDef[] = [
         {field: "borrowerId", headerName: "borrower Id", width: 100},
         {field: "cardID", headerName: "Card Id", width: 100},
@@ -41,10 +41,10 @@ function BookQueryClient() {
             sortable: false,
             filterable: false,
             disableColumnMenu: true,
-            renderCell: (params: GridCellParams) => <EditBorrower borrowerData={params.row} />,
+            renderCell: (params: GridCellParams) => <EditBorrower borrowerData={params.row} />, //calls the EditBorrower component
         },
         {
-            field: "delete",
+            field: "delete",//calls the mutation that calls the deleteBorrower component
             headerName: "",
             width: 90,
             sortable: false,
@@ -87,4 +87,4 @@ function BookQueryClient() {
 }
 
 
-export default BookQueryClient;
+export default BorrowerQueryClient;

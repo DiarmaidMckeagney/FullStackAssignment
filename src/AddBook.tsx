@@ -11,6 +11,8 @@ function AddBook() {
     const queryClient = useQueryClient();
 
     const [open, setOpen] = useState(false);
+
+    //setting state
     const [book, setBook] = useState<BookJSON>({
         isbn: 0,
         price: 0,
@@ -25,6 +27,7 @@ function AddBook() {
         title: "",
     });
 
+    //calling the addBook method in BokAPI
     const { mutate } = useMutation(addBook, {
         onSuccess: () => {
             queryClient.invalidateQueries(["book"]);
@@ -42,14 +45,15 @@ function AddBook() {
         setOpen(false);
     };
 
+    //when a change is made in the dialog box, the changes are mapped to the book
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBook({ ...book, [event.target.name]: event.target.value });
     };
 
+    //when the save button is pressed, the mutation is called, which will call the addBook method
     const handleSave = () => {
         mutate(book);
-        setBook({
-            // @ts-ignore
+        setBook({//reset the book to empty
             isbn: 0,
             price: 0,
             yearPublished: 0,
@@ -65,7 +69,7 @@ function AddBook() {
         handleClose();
     };
 
-    return (
+    return (//returns the button that will call the dialog content box to add a new book
         <>
             <button onClick={handleClickOpen}>New Book</button>
             <Dialog open={open} onClose={handleClose}>

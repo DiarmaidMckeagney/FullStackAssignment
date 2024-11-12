@@ -9,12 +9,14 @@ export const fetchBooks= async (): Promise<BookJSON[]> => {
 };
 
 // @ts-ignore
+//deletes a book
 export const deleteBooks = async (id: bigint): Promise<BookJSON[]> => {
     const response = await axios.delete("http://localhost:8080/api/books/"+ id);
     return response.data
 };
 
 // @ts-ignore
+//adds a new book
 export const addBook = async (Book: BookJSON): Promise<BookJSON[]> => {
     const response = await axios.post("http://localhost:8080/api/books", Book, {
         headers: { 'Content-Type': 'application/json', },
@@ -24,6 +26,7 @@ export const addBook = async (Book: BookJSON): Promise<BookJSON[]> => {
 };
 
 // @ts-ignore
+//edits a book
 export const updateBook = async (bookEntry: BookEntry): Promise<BookJSON> => {
     const response = await axios.patch("http://localhost:8080/api/books/"+bookEntry.id, bookEntry.book, {
         headers: {
@@ -40,12 +43,14 @@ export const fetchBookStore= async (): Promise<BookStoreJSON[]> => {
 };
 
 // @ts-ignore
+//deletes a bookstore
 export const deleteBookStore = async (id: bigint): Promise<BookStoreJSON[]> => {
     const response = await axios.delete("http://localhost:8080/api/bookStore/"+ id);
     return response.data
 };
 
 // @ts-ignore
+//adds a new book store
 export const addBookStore = async (BookStore: BookStoreJSON): Promise<BookStoreJSON[]> => {
     const response = await axios.post("http://localhost:8080/api/bookStore", BookStore, {
         headers: { 'Content-Type': 'application/json', },
@@ -55,6 +60,7 @@ export const addBookStore = async (BookStore: BookStoreJSON): Promise<BookStoreJ
 };
 
 // @ts-ignore
+//edits a bookstore
 export const updateBookStore = async (bookStoreEntry: BookStoreEntry): Promise<BookStoreJSON> => {
     const response = await axios.patch("http://localhost:8080/api/bookStore/"+ bookStoreEntry.id, bookStoreEntry.bookStore, {
         headers: {
@@ -71,12 +77,14 @@ export const fetchBorrower= async (): Promise<BorrowerJSON[]> => {
 };
 
 // @ts-ignore
+//deletes a borrower
 export const deleteBorrower = async (id:bigint): Promise<BorrowerJSON[]> => {
     const response = await axios.delete("http://localhost:8080/api/borrower/"+ id);
     return response.data
 };
 
 // @ts-ignore
+//adds a new borrower
 export const addBorrower = async (Borrower: BorrowerJSON): Promise<BorrowerJSON[]> => {
     const response = await axios.post("http://localhost:8080/api/borrower", Borrower, {
         headers: { 'Content-Type': 'application/json', },
@@ -85,8 +93,9 @@ export const addBorrower = async (Borrower: BorrowerJSON): Promise<BorrowerJSON[
     return response.data;
 };
 
+
 // @ts-ignore
-// @ts-ignore
+//edits a borrower
 export const updateBorrower = async (borrowerEntry: BorrowerEntry): Promise<BorrowerJSON> => {
     const response = await axios.patch(`http://localhost:8080/api/borrower/${borrowerEntry.id}`, borrowerEntry.borrower, {
         headers: {

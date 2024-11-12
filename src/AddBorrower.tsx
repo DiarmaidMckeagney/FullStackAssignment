@@ -11,14 +11,14 @@ function AddBorrower() {
     const queryClient = useQueryClient();
 
     const [open, setOpen] = useState(false);
+    //sets state of borrower
     const [borrower, setBorrower] = useState<BorrowerJSON>({
-        // @ts-ignore
         borrowerId: 0,
         cardID: 0,
         firstname: "",
         lastname: "",
     });
-
+    //calls the addBorrower method
     const { mutate } = useMutation(addBorrower, {
         onSuccess: () => {
             queryClient.invalidateQueries(["borrower"]);
@@ -35,15 +35,15 @@ function AddBorrower() {
     const handleClose = () => {
         setOpen(false);
     };
-
+    //when a change is made in the dialog box, the changes are mapped to the borrower
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBorrower({ ...borrower, [event.target.name]: event.target.value });
     };
 
+    //when the save button is pressed, the mutation is called, which will call the addBorrower method
     const handleSave = () => {
         mutate(borrower);
-        setBorrower({
-            // @ts-ignore
+        setBorrower({//resets the borrower to empty
             borrowerId: 0,
             cardID: 0,
             firstname: "",
@@ -52,7 +52,7 @@ function AddBorrower() {
         handleClose();
     };
 
-    return (
+    return (//returns the button which calls the dialog box to add a new borrower
         <>
             <button onClick={handleClickOpen}>New Borrower</button>
             <Dialog open={open} onClose={handleClose}>

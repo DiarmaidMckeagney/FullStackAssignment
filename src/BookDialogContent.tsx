@@ -1,13 +1,13 @@
 import DialogContent from "@mui/material/DialogContent";
 import {BookJSON} from "./types";
 
-type DialogFormProps = {
+type DialogFormProps = {//props that are passed in
     book: BookJSON;
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 function BookDialogContent({ book, handleChange }: DialogFormProps) {
-    return (
+    return (//returns a dialog box with all fields for a book except the bookId which is auto generated and is not allowed to be changed
         <>
             <DialogContent>
                 <input
@@ -25,37 +25,37 @@ function BookDialogContent({ book, handleChange }: DialogFormProps) {
                 />
                 <br/>
                 <input
-                    placeholder="year_published"
-                    name="year_published"
+                    placeholder="yearPublished"
+                    name="yearPublished"
                     value={book.yearPublished}
                     onChange={handleChange}
                 />
                 <br/>
                 <input
-                    placeholder="book_store"
-                    name="book_store"
+                    placeholder="bookStore"
+                    name="bookStore"
                     value={book.bookStore}
                     onChange={handleChange}
                 />
                 <br/>
                 <input
                     type="datetime-local"
-                    placeholder="borrow_date"
-                    name="borrow_date"
+                    placeholder="borrowDate"
+                    name="borrowDate"
                     onChange={handleChange}
                 />
                 <br/>
                 <input
-                    placeholder="borrower"
-                    name="borrower"
+                    placeholder="borrowerId"
+                    name="borrowerId"
                     value={book.borrowerId}
                     onChange={handleChange}
                 />
                 <br/>
                 <input
                     type="datetime-local"
-                    placeholder="return_date"
-                    name="return_date"
+                    placeholder="returnDate"
+                    name="returnDate"
                     onChange={handleChange}
                 />
                 <br/>

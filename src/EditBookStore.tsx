@@ -7,23 +7,24 @@ import { BookStoreJSON, BookStoreEntry } from "./types";
 import { updateBookStore } from "./BookAPI";
 import { useMutation, useQueryClient } from "react-query";
 
-type FormProps = {
+type FormProps = {//book store to be edited that is passed into the component
     bookStoreData: BookStoreJSON;
 };
 
-function EditBorrower({ bookStoreData }: FormProps) {
+function EditBookStore({ bookStoreData }: FormProps) {
     const queryClient = useQueryClient();
 
     const [open, setOpen] = useState(false);
 
+    //sets the state of the bookStore
     const [bookStore, SetBookStore] = useState<BookStoreJSON>({
-        bookStoreId: bookStoreData.bookStoreId,
-        storeName: bookStoreData.storeName,
-        address: bookStoreData.address,
-        managerName: bookStoreData.managerName,
-
+        bookStoreId: 0,
+        storeName: "",
+        address: "",
+        managerName: "",
     });
 
+    //calls the updateBookStore method
     const { mutate } = useMutation(updateBookStore, {
         onSuccess: () => {
             queryClient.invalidateQueries(["bookStore"]);
@@ -33,6 +34,7 @@ function EditBorrower({ bookStoreData }: FormProps) {
         },
     });
 
+    //when the component is open, the bookStore is set to the values that are passed in
     const handleClickOpen = () => {
         setOpen(true);
         SetBookStore({
@@ -47,25 +49,26 @@ function EditBorrower({ bookStoreData }: FormProps) {
         setOpen(false);
     };
 
+    //when the save button is pressed, call the mutation to call the updateBookStore method
     const handleSave = () => {
-        const id = bookStoreData.bookStoreId;
-        const BookStoreEntry: BookStoreEntry= { bookStore, id };
-        mutate(BookStoreEntry);
-        SetBookStore({
+        const id = bookStoreData.bookStoreId;//makes sure the id is the same as it cannot be changed
+        const BookStoreEntry: BookStoreEntry= { bookStore, id }; //sets up the BookStoreEntry object
+        mutate(BookStoreEntry);//sends the BookStoreEntry to the mutation
+        SetBookStore({//resets the bookStore to empty
             bookStoreId: 0,
             storeName: "",
             address: "",
             managerName: ""
-
         });
         setOpen(false);
     };
 
+    //when a change is made in the dialog box, the changes are mapped to the bookStore
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         SetBookStore({ ...bookStore, [event.target.name]: event.target.value });
     };
 
-    return (
+    return (//returns a button to open the dialog box to edit a row.
         <>
             <button onClick={handleClickOpen}>Edit</button>
             <Dialog open={open} onClose={handleClose}>
@@ -80,4 +83,4 @@ function EditBorrower({ bookStoreData }: FormProps) {
     );
 }
 
-export default EditBorrower;
+export default EditBookStore;

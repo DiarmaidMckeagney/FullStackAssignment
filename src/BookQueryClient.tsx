@@ -4,7 +4,6 @@ import {DataGrid, GridCellParams, GridColDef} from "@mui/x-data-grid";
 import {v4 as uuidv4} from "uuid";
 import {useState} from "react";
 import AddBook from "./AddBook";
-import EditBookStore from "./EditBookStore";
 import EditBook from "./EditBook";
 
 function BookQueryClient() {
@@ -15,6 +14,7 @@ function BookQueryClient() {
     // useQuery returns an object with isLoading, error and data properties
     const { isLoading, error, data } = useQuery("todos1", fetchBooks);
 
+    //calls the deleteBooks method
     const { mutate } = useMutation(deleteBooks, {
         onSuccess: () => {
             setOpen(true);
@@ -45,10 +45,10 @@ function BookQueryClient() {
             sortable: false,
             filterable: false,
             disableColumnMenu: true,
-            renderCell: (params: GridCellParams) => <EditBook bookData={params.row} />,
+            renderCell: (params: GridCellParams) => <EditBook bookData={params.row} />,//calls the edit book componant
         },
         {
-            field: "delete",
+            field: "delete", //calls the mutation which calls the deleteBook method
             headerName: "",
             width: 90,
             sortable: false,

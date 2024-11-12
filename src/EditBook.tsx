@@ -7,7 +7,7 @@ import {BookJSON, BookEntry} from "./types";
 import { updateBook } from "./BookAPI";
 import { useMutation, useQueryClient } from "react-query";
 
-type FormProps = {
+type FormProps = {//book to be updated that is passed in
     bookData: BookJSON;
 };
 
@@ -16,6 +16,7 @@ function EditBook({ bookData }: FormProps) {
 
     const [open, setOpen] = useState(false);
 
+    //sets the state of the book
     const [book, SetBook] = useState<BookJSON>({
         isbn: 0,
         price: 0,
@@ -30,6 +31,7 @@ function EditBook({ bookData }: FormProps) {
         title: "",
     });
 
+    //calls the updateBook method
     const { mutate } = useMutation(updateBook, {
         onSuccess: () => {
             queryClient.invalidateQueries(["book"]);
@@ -39,6 +41,7 @@ function EditBook({ bookData }: FormProps) {
         },
     });
 
+    //when the component is opened, set the data to what has been passed in
     const handleClickOpen = () => {
         setOpen(true);
         SetBook({
@@ -60,11 +63,12 @@ function EditBook({ bookData }: FormProps) {
         setOpen(false);
     };
 
+    //when the save button is pressed, call the mutation to call the updateBook method
     const handleSave = () => {
-        const id = bookData.bookId;
-        const BookEntry: BookEntry= { book, id };
-        mutate(BookEntry);
-        SetBook({
+        const id = bookData.bookId;//makes sure the id is the same as it cannot be changed
+        const BookEntry: BookEntry= { book, id }; //sets up the Book Entry object
+        mutate(BookEntry);//sends the BookEntry to the mutation
+        SetBook({//resets the book to empty
             isbn: 0,
             price: 0,
             yearPublished: 0,
@@ -80,11 +84,12 @@ function EditBook({ bookData }: FormProps) {
         setOpen(false);
     };
 
+    //when a change is made in the dialog box, the changes are mapped to the book
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         SetBook({ ...book, [event.target.name]: event.target.value });
     };
 
-    return (
+    return (//returns a button to open the dialog box to edit a row.
         <>
             <button onClick={handleClickOpen}>Edit</button>
             <Dialog open={open} onClose={handleClose}>
