@@ -7,6 +7,7 @@ import {
 } from "@mui/x-data-grid";
 import {useState} from "react";
 import EditBorrower from "./EditBorrower";
+import AddBorrower from "./AddBorrower";
 
 function BookQueryClient() {
     const [open, setOpen] = useState(false);
@@ -29,8 +30,8 @@ function BookQueryClient() {
     });
 
     const columns: GridColDef[] = [
-        {field: "borrowerId", headerName: "Card Id", width: 100},
-        {field: "cardID", headerName: "Borrower Id", width: 100},
+        {field: "borrowerId", headerName: "borrower Id", width: 100},
+        {field: "cardID", headerName: "Card Id", width: 100},
         {field: "firstname", headerName: "Firstname", width: 100},
         {field: "lastname", headerName: "Lastname.", width: 100},
         {
@@ -71,6 +72,7 @@ function BookQueryClient() {
     //returns the data grid containing the data from the query
     return (
         <>
+            <AddBorrower />
             <DataGrid
                 rows={data}
                 columns={columns}

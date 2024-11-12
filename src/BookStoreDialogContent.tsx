@@ -1,33 +1,33 @@
 import DialogContent from "@mui/material/DialogContent";
-import { BorrowerJSON } from "./types";
+import {BookStoreJSON} from "./types";
 
 type DialogFormProps = {
-    borrower: BorrowerJSON;
+    bookStore: BookStoreJSON;
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-function BorrowerDialogContent({ borrower, handleChange }: DialogFormProps) {
+function BookStoreDialogContent({ bookStore, handleChange }: DialogFormProps) {
     return (
         <>
             <DialogContent>
                 <input
-                    placeholder="Card Id"
-                    name="cardid"
-                    value={borrower.cardID}
+                    placeholder="isbn"
+                    name="isbn"
+                    value={bookStore.isbn}
                     onChange={handleChange}
                 />
                 <br/>
                 <input
                     placeholder="firstname"
                     name="firstname"
-                    value={borrower.firstname}
+                    value={bookStore.firstname}
                     onChange={handleChange}
                 />
                 <br />
                 <input
                     placeholder="lastname"
                     name="lastname"
-                    value={borrower.lastname}
+                    value={bookStore.lastname}
                     onChange={handleChange}
                 />
                 <br />
@@ -35,4 +35,4 @@ function BorrowerDialogContent({ borrower, handleChange }: DialogFormProps) {
         </>
     );
 }
-export default BorrowerDialogContent;
+export default BookStoreDialogContent;

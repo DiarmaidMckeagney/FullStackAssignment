@@ -11,17 +11,17 @@ type FormProps = {
     borrowerData: BorrowerJSON;
 };
 
-function EditCar({ borrowerData }: FormProps) {
+function EditBorrower({ borrowerData }: FormProps) {
     const queryClient = useQueryClient();
 
     const [open, setOpen] = useState(false);
     // @ts-ignore
     // @ts-ignore
     const [borrower, setBorrower] = useState<BorrowerJSON>({
-        borrower_id: 0n,
-        cardid: 0,
-        firstname: "",
-        lastname: "",
+        borrowerId: borrowerData.borrowerId,
+        cardID: borrowerData.cardID,
+        firstname: borrowerData.firstname,
+        lastname: borrowerData.lastname,
 
     });
 
@@ -37,8 +37,8 @@ function EditCar({ borrowerData }: FormProps) {
     const handleClickOpen = () => {
         setOpen(true);
         setBorrower({
-            borrower_id: borrowerData.borrower_id,
-            cardid: borrowerData.cardid,
+            borrowerId: borrowerData.borrowerId,
+            cardID: borrowerData.cardID,
             firstname: borrowerData.firstname,
             lastname: borrowerData.lastname,
         });
@@ -49,12 +49,12 @@ function EditCar({ borrowerData }: FormProps) {
     };
 
     const handleSave = () => {
-        const id = borrowerData.borrower_id;
+        const id = borrowerData.borrowerId;
         const BorrowerEntry: BorrowerEntry= { borrower, id };
         mutate(BorrowerEntry);
         setBorrower({
-            borrower_id: 0n,
-            cardid: 0,
+            borrowerId: 0,
+            cardID: 0,
             firstname: "",
             lastname: "",
 
@@ -81,4 +81,4 @@ function EditCar({ borrowerData }: FormProps) {
     );
 }
 
-export default EditCar;
+export default EditBorrower;

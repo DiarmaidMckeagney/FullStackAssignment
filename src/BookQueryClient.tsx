@@ -3,6 +3,7 @@ import {deleteBooks, fetchBooks} from "./BookAPI";
 import {DataGrid, GridCellParams, GridColDef} from "@mui/x-data-grid";
 import {v4 as uuidv4} from "uuid";
 import {useState} from "react";
+import AddBook from "./AddBook";
 
 function BookQueryClient() {
     const [open, setOpen] = useState(false);
@@ -64,6 +65,7 @@ function BookQueryClient() {
     //returns the data grid containing the data from the query
     return (
         <>
+            <AddBook />
             <DataGrid
                 rows={data}
                 columns={columns}

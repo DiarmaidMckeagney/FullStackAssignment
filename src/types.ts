@@ -5,10 +5,10 @@ export type BookJSON = {
     isbn: number;
     price: number;
     year_published: number;
-    book_id: bigint;
-    book_store: bigint;
+    book_id: number;
+    book_store: number;
     borrow_date: Date;
-    borrower: bigint;
+    borrower: number;
     return_date: Date;
     author: string;
     genre: string;
@@ -17,12 +17,12 @@ export type BookJSON = {
 
 export type BookEntry = {
     book: BookJSON;
-    id: bigint;
+    id: number;
 }
 
 //used to define how the Book table returns data
 export type BookStoreJSON = {
-    book_store_id: bigint;
+    book_store_id: number;
     store_name: string;
     address: string;
     manager_name: string;
@@ -30,18 +30,18 @@ export type BookStoreJSON = {
 
 export type BookStoreEntry = {
     bookStore: BookStoreJSON;
-    id: bigint;
+    id: number;
 }
 
 //used to define how the Book table returns data
 export type BorrowerJSON = {
-    cardid: number;
-    borrower_id: bigint;
+    cardID: number;
+    borrowerId: number;
     firstname: string;
     lastname: string;
 }
 
 export type BorrowerEntry = {
     borrower: BorrowerJSON;
-    id: bigint;
+    id: number;
 }
